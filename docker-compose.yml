@@ -1,0 +1,35 @@
+mozi:
+  build: backend/
+  volumes:
+    - MOZI_BACKEND_DIR:/root/mozi_backend
+    - /etc/localtime:/etc/localtime:ro
+  enviroment:
+    - PYTHONPATH=/usr/local/lib/python2.7/dist-packages
+
+  command: bash
+
+  links:
+    - frontend:fronend
+    - relex:relex
+    - mongodb:mongodb
+    - redis:redis
+    - opencog:opencog
+
+frontend:
+  build: frontend/
+  command: /bin/bash -c ng serve
+
+relex:
+  image: opencog/relex
+  ports:
+    "4444:4444"
+  command: /bin/sh -c "./opencog-server.sh"
+
+opencog:
+  image: opencog/opencong
+
+mongodb:
+  image:"mongo"
+
+redis:
+  image:"redis"
