@@ -3,17 +3,17 @@ mozi:
   volumes:
     - MOZI_BACKEND_DIR:/root/mozi_backend
     - /etc/localtime:/etc/localtime:ro
-  enviroment:
+  environment:
     - PYTHONPATH=/usr/local/lib/python2.7/dist-packages
 
   command: bash
 
   links:
-    - frontend:fronend
-    - relex:relex
-    - mongodb:mongodb
-    - redis:redis
-    - opencog:opencog
+    - frontend
+    - relex
+    - mongo
+    - redis
+    - opencog
 
 frontend:
   build: frontend/
@@ -22,14 +22,14 @@ frontend:
 relex:
   image: opencog/relex
   ports:
-    "4444:4444"
+    - "4444:4444"
   command: /bin/sh -c "./opencog-server.sh"
 
 opencog:
   image: opencog/opencong
 
-mongodb:
-  image:"mongo"
+mongo:
+  image: mongo
 
 redis:
-  image:"redis"
+  image: redis
