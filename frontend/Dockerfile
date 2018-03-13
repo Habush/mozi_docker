@@ -5,7 +5,7 @@ MAINTAINER Xabush Semrie <hsamireh@gmail.com>
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update
-
+RUN apt-get install curl
 #Install Node
 RUN \
     curl -sL https://deb.nodesource.com/setup_7.x |bash - && \
