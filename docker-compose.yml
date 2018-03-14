@@ -1,35 +1,40 @@
-mozi:
-  build: backend/
-  volumes:
-    - MOZI_BACKEND_DIR:/root/mozi_backend
-    - /etc/localtime:/etc/localtime:ro
-  environment:
-    - PYTHONPATH=/usr/local/lib/python2.7/dist-packages
-
-  command: bash
-
-  links:
-    - frontend
-    - relex
-    - mongo
-    - redis
-    - opencog
-
-frontend:
-  build: frontend/
-  command: /bin/bash -c ng serve
-
-relex:
-  image: opencog/relex
-  ports:
-    - "4444:4444"
-  command: /bin/sh -c "./opencog-server.sh"
-
-opencog:
-  image: opencog/opencong
-
-mongo:
-  image: mongo
-
-redis:
-  image: redis
+version: '2'
+services:
+  mozi:
+    build: backend/
+    volumes:
+      - ../mozi_backend_flask:/root/mozi_backend
+      - /etc/localtime:/etc/localtime:ro
+    working_dir: /root/mozi_backend
+    environment:
+      - PYTHONPATH="/usr/local/lib/python2.5/dist-packages:PYTHONPATH=/usr/local/lib/python2.7/site-packages:${PYTHONPATH}"
+      - LD_LIBRARY_PATH="/usr/local/lib"
+    command: bash -c "ldconfig && pip install -r requirements.txt && uwsgi --http 0.0.0.0:5000 --gevent 100 --http-websockets -w wsgi:app"
+    ports:
+      - "5000:5000"
+    links:
+      - relex
+      - mongo
+      - redis
+      - frontend
+  
+  frontend:
+    build: frontend/
+    volumes:
+       - ../mozi:/root/mozi
+    ports:
+       - "4200:4200"
+    working_dir: /root/mozi
+    command: bash -c "npm install && ng serve"
+  
+  relex:
+    image: opencog/relex
+    ports:
+      - "4444:4444"
+    command: /bin/sh -c "./opencog-server.sh"
+  
+  mongo:
+    image: mongo
+  
+  redis:
+    image: redis

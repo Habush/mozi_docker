@@ -3,12 +3,52 @@ MAINTAINER Xabush Semrie <hsamireh@gmail.com>
 
 #Run apt-get in NONINTERACTIVE mode
 ENV DEBIAN_FRONTEND noninteractive
+
 #Define HOME Var
 ENV HOME /root
+RUN mkdir /root/mozi_backend
 ENV MOZI $HOME/mozi_backend
-WORKDIR $HOME
 
-WORKDIR $HOME
+RUN apt-get update
+
+RUN apt-get install -y software-properties-common python-software-properties wget rlwrap telnet \
+                       netcat-openbsd less curl vim python2.7-dbg \
+                       tmux man git valgrind gdb cmake gcc g++
+
+# Install Java.
+
+RUN \
+  apt-get install -y openjdk-8-jdk && \
+  rm -rf /var/lib/apt/lists/*
+
+# Define commonly used JAVA_HOME variable
+
+ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/  
+
+#tmp install opencog tools
+ADD https://raw.githubusercontent.com/opencog/ocpkg/master/ocpkg \
+    /tmp/octool
+
+RUN chmod 755 /tmp/octool;  sed -i 's/sudo//g' /tmp/octool; sync; /tmp/octool -rsdopscamv
+
+#Manually Install Opencog
+#WORKDIR $HOME
+#
+#RUN git clone https://github.com/opencog/opencog.git
+#
+#WORKDIR opencog
+#
+#RUN mkdir build
+#
+#WORKDIR build
+#
+#RUN \
+#    cmake .. && \
+#    make -j3 && \
+#    make install
+#
+#WORKDIR $HOME
+
 RUN git clone https://github.com/opencog/agi-bio.git
 WORKDIR agi-bio
 RUN mkdir build
@@ -31,6 +71,8 @@ RUN \
     make && \
     make install 
 
-WORKDIR $HOME
+WORKDIR $MOZI
+
+EXPOSE 5000
 
 CMD [ "/bin/bash" ]

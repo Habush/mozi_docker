@@ -5,7 +5,7 @@ MAINTAINER Xabush Semrie <hsamireh@gmail.com>
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update
-RUN apt-get install curl
+RUN apt-get install -y curl
 #Install Node
 RUN \
     curl -sL https://deb.nodesource.com/setup_7.x |bash - && \
@@ -13,14 +13,12 @@ RUN \
 
 RUN npm install -g @angular/cli
 
-RUN mkdir /mozi
+ENV HOME /root
 
-WORKDIR /mozi
+RUN mkdir /root/mozi
 
-COPY ./mozi /mozi/
-
-RUN npm install
+WORKDIR $HOME/mozi
 
 EXPOSE 4200
 
-CMD [ "/bin/bash" ]
+ENTRYPOINT  npm install && ng serve
