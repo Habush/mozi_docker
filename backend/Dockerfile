@@ -15,6 +15,8 @@ RUN apt-get install -y software-properties-common python-software-properties wge
                        netcat-openbsd less curl vim python2.7-dbg \
                        tmux man git valgrind gdb cmake gcc g++
 
+RUN apt-get install libboost-dev libboost-date-time-dev libboost-filesystem-dev libboost-program-options-dev libboost-regex-dev libboost-serialization-dev libboost-system-dev libboost-thread-dev -y
+
 # Install Java.
 
 RUN \
@@ -26,28 +28,60 @@ RUN \
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/  
 
 #tmp install opencog tools
-ADD https://raw.githubusercontent.com/opencog/ocpkg/master/ocpkg \
-    /tmp/octool
+#ADD https://raw.githubusercontent.com/opencog/ocpkg/master/ocpkg /tmp/octool
 
-RUN chmod 755 /tmp/octool;  sed -i 's/sudo//g' /tmp/octool; sync; /tmp/octool -rsdopscamv
+#RUN chmod 755 /tmp/octool;  sed -i 's/sudo//g' /tmp/octool; sync; /tmp/octool -rsdopscamv
+
+#Manually Install Cogutils
+WORKDIR $HOME
+
+RUN git clone https://github.com/opencog/cogutil.git
+
+WORKDIR cogutil
+
+RUN mkdir build
+
+WORKDIR build
+
+RUN \
+    cmake .. && \
+    make -j3 && \
+    make install
+
+WORKDIR $HOME
+
+#Manually install the atomspace
+RUN git clone https://github.com/opencog/atomspace.git
+
+WORKDIR atomspace
+
+RUN mkdir build
+
+WORKDIR build
+
+RUN \
+    cmake .. && \
+    make -j3 && \
+    make install
+
+WORKDIR $HOME
+
 
 #Manually Install Opencog
-#WORKDIR $HOME
-#
-#RUN git clone https://github.com/opencog/opencog.git
-#
-#WORKDIR opencog
-#
-#RUN mkdir build
-#
-#WORKDIR build
-#
-#RUN \
-#    cmake .. && \
-#    make -j3 && \
-#    make install
-#
-#WORKDIR $HOME
+RUN git clone https://github.com/opencog/opencog.git
+
+WORKDIR opencog
+
+RUN mkdir build
+
+WORKDIR build
+
+RUN \
+    cmake .. && \
+    make -j3 && \
+    make install
+
+WORKDIR $HOME
 
 RUN git clone https://github.com/opencog/agi-bio.git
 WORKDIR agi-bio
