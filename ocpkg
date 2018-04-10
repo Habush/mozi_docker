@@ -584,7 +584,7 @@ cd /tmp/
 rm -rf master.tar.gz* cogutils-master
 wget https://github.com/opencog/cogutils/archive/master.tar.gz
 tar -xvf master.tar.gz
-cd cogutils-master/
+cd cogutil-master/
 mkdir build
 cd build/
 cmake ..
