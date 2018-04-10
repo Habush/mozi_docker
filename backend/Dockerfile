@@ -11,8 +11,13 @@ ENV MOZI $HOME/mozi_backend
 
 RUN apt-get update
 
-RUN apt-get install -y wget rlwrap telnet netcat-openbsd less curl vim python2.7-dbg \
+#Make python3 the default python
+RUN update-alternatives --install /usr/bin/python3 python /usr/bin/python 0
+
+RUN apt-get install -y wget rlwrap telnet netcat-openbsd less curl vim python3-dbg \
                        tmux man git valgrind gdb cmake gcc g++
+
+
 
 # Install Java.
 
