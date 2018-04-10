@@ -1,14 +1,7 @@
-version: '2'
+version: '3'
 services:
   mozi:
     build: backend/
-    volumes:
-      - ../mozi_backend_flask:/root/mozi_backend
-      - ../bio-data:/root/bio-data
-      - ../ghost:/root/ghost
-      - /etc/localtime:/etc/localtime:ro
-    working_dir: /root/mozi_backend
-    command: bash -c "pip install -r requirements.txt && uwsgi --http 0.0.0.0:5000 --gevent 100 --http-websockets -w wsgi:app"
     ports:
       - "5000:5000"
     links:
