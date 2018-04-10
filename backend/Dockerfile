@@ -11,8 +11,17 @@ ENV MOZI $HOME/mozi_backend
 
 RUN apt-get update
 
-#Make python3 the default python
-RUN update-alternatives --install /usr/bin/python3 python /usr/bin/python 0
+#Install and make python3 default
+RUN apt-get install -y python3 python3-dev python3-pip
+
+RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 0
+
+RUN update-alternatives --install /usr/bin/pip pip /usr/bin/pip3 0
+
+RUN pip --version
+
+#Install cython
+RUN pip install cython
 
 RUN apt-get install -y wget rlwrap telnet netcat-openbsd less curl vim python3-dbg \
                        tmux man git valgrind gdb cmake gcc g++
