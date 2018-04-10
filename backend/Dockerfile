@@ -7,6 +7,9 @@ ENV DEBIAN_FRONTEND noninteractive
 #Define HOME Var
 ENV HOME /root
 RUN mkdir /root/mozi_backend
+RUN mkdir /root/bio-data
+RUN mkdir /root/ghost
+
 ENV MOZI $HOME/mozi_backend
 
 RUN apt-get update
