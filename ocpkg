@@ -131,9 +131,9 @@ PACKAGES_BUILD="
 		libicu-dev \
 		libbz2-dev \
 		cython \
-		python2.7-dev \
-		python-zmq \
-		python-simplejson \
+		python3-dev \
+		python3-zmq \
+		python3-simplejson \
 		libboost-date-time-dev \
 		libboost-filesystem-dev \
 		libboost-math-dev \
@@ -563,9 +563,6 @@ for REPO in $REPOSITORIES ; do
   sudo apt-add-repository -y $REPO
 done
 
-# Ros repository for opencog/opencog repo
-# TODO remove this when the reference os is changed to 16.04.
-sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
 # sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B01FA116
 sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
 sudo apt-get $QUIET --assume-yes update
