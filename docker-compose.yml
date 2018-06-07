@@ -10,7 +10,7 @@ services:
       - redis
       - frontend
     volumes:
-      - /home/xabush/mozi/mozi_backend_flask/:/root/mozi/
+      - $MOZI_BACKEND:/root/mozi/
     
     working_dir: /root/mozi
 
@@ -22,7 +22,7 @@ services:
   frontend:
     build: frontend/
     volumes:
-       - /home/xabush/mozi/mozi_frontend:/root/mozi
+       - $MOZI_FRONTEND:/root/mozi
     ports:
        - "4200:4200"
     working_dir: /root/mozi
