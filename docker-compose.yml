@@ -9,15 +9,24 @@ services:
       - mongo
       - redis
       - frontend
-  
+    volumes:
+      - /home/xabush/mozi/mozi_backend_flask/:/root/mozi/
+    
+    working_dir: /root/mozi
+
+    environment:
+      - MONGODB_URI=mongodb://mongo:27017/
+      - REDIS_URI=redis://redis:6379/0
+      - C_FORCE_ROOT=1
+    command: bash -c "pip install -r requirements.txt && python wsgi.py"  
   frontend:
     build: frontend/
     volumes:
-       - ../mozi:/root/mozi
+       - /home/xabush/mozi/mozi_frontend:/root/mozi
     ports:
        - "4200:4200"
     working_dir: /root/mozi
-    command: bash -c "npm install && ng serve"
+    command: bash -c "npm install && ng serve --host 0.0.0.0 --port 4200"
   
   relex:
     image: opencog/relex
@@ -27,6 +36,9 @@ services:
   
   mongo:
     image: mongo
-  
+    ports:
+     - "27017:27017"
   redis:
     image: redis
+    ports:
+     - "6379:6379"
