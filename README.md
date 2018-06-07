@@ -1,5 +1,5 @@
 ### MOZI DOCKER SETUP
-
+0. Define the `$MOZI_BACKEND` and `$MOZI_FRONTEND` variables to point to the Mozi Backend and Mozi Frontend directories
 1. Clone [mozi_docker](http://github.com/Habush/mozi_docker) , [mozi_backend_flask](https://gitlab.com/icog-labs/mozi_backend_flask.git) and [mozi](https://gitlab.com/icog-labs/mozi.git) to your **home** directory
 2. Goto mozi directory and open `src/app/app.config.ts` and replace with the following code
  ``` javascript 
