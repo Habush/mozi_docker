@@ -8,6 +8,8 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV HOME /root
 
 RUN mkdir /root/mozi
+RUN mkdir /root/mozi_datasets
+RUN mkdir /root/mozi_datasets/result
 
 RUN apt-get update
 
