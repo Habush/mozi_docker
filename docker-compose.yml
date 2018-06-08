@@ -11,6 +11,7 @@ services:
       - frontend
     volumes:
       - $MOZI_BACKEND:/root/mozi/
+      - $GHOST_DIR:/root/ghost/
     
     working_dir: /root/mozi
 
@@ -19,6 +20,8 @@ services:
       - REDIS_URI=redis://redis:6379/0
       - C_FORCE_ROOT=1
     command: bash -c "pip install -r requirements.txt && python wsgi.py"  
+
+  
   frontend:
     build: frontend/
     volumes:
