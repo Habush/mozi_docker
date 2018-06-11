@@ -12,6 +12,8 @@ services:
     volumes:
       - $MOZI_BACKEND:/root/mozi/
       - $GHOST_DIR:/root/ghost/
+      - $BIODATA_DIR:/root/bio-data/
+      - $DATASETS_DIR:/root/mozi_datasets
     
     working_dir: /root/mozi
 
