@@ -1,8 +1,19 @@
 ### MOZI DOCKER SETUP
-0. Define the `$MOZI_BACKEND`,`$MOZI_FRONTEND` and `GHOST_DIR` variables to point to the Mozi Backend, Mozi Frontend and Ghost directories respectively
+1. Clone [mozi_docker](http://github.com/Habush/mozi_docker) , [mozi_backend_flask](https://gitlab.com/icog-labs/mozi_backend_flask), [mozi_frontend](https://gitlab.com/icog-labs/mozi), [ghost](https://gitlab.com/xabush/ghost) and [bio-data](https://gitlab.com/opencog-bio/bio-data) repositories
 
-1. Clone [mozi_docker](http://github.com/Habush/mozi_docker) , [mozi_backend_flask](https://gitlab.com/icog-labs/mozi_backend_flask.git) and [mozi](https://gitlab.com/icog-labs/mozi.git) to your **home** directory
-2. Goto mozi front-end directory and open `src/app/app.config.ts` and replace with the following code
+2. Define the following environment variables:
+
+    a. `$MOZI_BACKEND` -- Points to the Mozi backend dir
+
+    b. `$MOZI_FRONTEND` -- Points to the Mozi frontend dir 
+
+    c. `GHOST_DIR` -- Points to the Ghost dir
+
+    d. `BIODATA_DIR` -- Points to the Bio-data dir
+
+    e. `DATASETS_DIR` -- Points to the location where datasets will be stored
+
+3. Goto mozi front-end directory and open `src/app/app.config.ts` and replace with the following code
  ``` javascript 
  export const configs = {
     'url' : 'http://localhost:5000/api/v1.1/',
@@ -11,7 +22,7 @@
     'sample_data_file': 'atoms.oovc_ensemble_sti.json'
 };
 ``` 
-3. Goto mozi_docker directory and run the following commands:
+4. Goto mozi_docker directory and run the following commands:
 
     3a. `docker-compose build mozi` which will build mozi
 
