@@ -123,7 +123,7 @@ WORKDIR $HOME
 
 RUN git clone https://github.com/opencog/agi-bio.git
 WORKDIR agi-bio
-RUN git checkout a461ab38bcf71894ebca1e42badff03a435eaa40 
+RUN git checkout 1fc313d66dd330f46db14f002b87bd4122ba5445 
 RUN mkdir build
 WORKDIR build
 RUN \
