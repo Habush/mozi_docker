@@ -3,9 +3,9 @@
 
 2. Define the following environment variables:
 
-    a. `$MOZI_BACKEND` -- Points to the Mozi backend dir
+    a. `MOZI_BACKEND` -- Points to the Mozi backend dir
 
-    b. `$MOZI_FRONTEND` -- Points to the Mozi frontend dir 
+    b. `MOZI_FRONTEND` -- Points to the Mozi frontend dir 
 
     c. `GHOST_DIR` -- Points to the Ghost dir
 
