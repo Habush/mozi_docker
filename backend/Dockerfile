@@ -18,9 +18,12 @@ RUN mkdir /root/ghost
 RUN apt-get update
 
 #Install and make python3 default
-RUN apt-get install -y python3 python3-dev python3-pip
+RUN apt-get install -y python3 python3-dev
 
 RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 0
+
+RUN python -m pip uninstall pip 
+RUN python -m pip install pip==9.0.3
 
 RUN update-alternatives --install /usr/bin/pip pip /usr/bin/pip3 0
 

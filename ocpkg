@@ -609,9 +609,6 @@ wget https://raw.githubusercontent.com/opencog/opencog/master/opencog/python/req
 # system instllation is made.
 # TODO: cleanup the requirements.txt file.
 #uninstall the latest pip versoin which has a bug
-python -m pip uninstall pip 
-python -m pip install pip==9.0.3
-
 sudo pip install -U $(awk '!/scipy/&&!/numpy/&&!/matplotlib/' requirements.txt)
 sudo apt-get install -y python-matplotlib python-numpy python-scipy python
 
