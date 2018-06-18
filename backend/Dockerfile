@@ -49,7 +49,7 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/
 ##tmp install opencog tools
 ADD https://raw.githubusercontent.com/Habush/mozi_docker/master/ocpkg /tmp/octool
 #
-RUN chmod 755 /tmp/octool;  sed -i 's/sudo//g' /tmp/octool; sync; /tmp/octool -rsdscv
+RUN chmod 755 /tmp/octool;  sed -i 's/sudo//g' /tmp/octool; sync; /tmp/octool -rdops
 #
 
 #Install cogutils dependencies

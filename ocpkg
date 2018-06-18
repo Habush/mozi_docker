@@ -612,7 +612,6 @@ wget https://raw.githubusercontent.com/opencog/opencog/master/opencog/python/req
 python -m pip uninstall pip 
 python -m pip install pip==9.0.3
 
-sudo pip install -U pip
 sudo pip install -U $(awk '!/scipy/&&!/numpy/&&!/matplotlib/' requirements.txt)
 sudo apt-get install -y python-matplotlib python-numpy python-scipy python
 
