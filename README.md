@@ -1,5 +1,6 @@
 ### MOZI DOCKER SETUP
 1. Clone [mozi_docker](http://github.com/Habush/mozi_docker) , [mozi_backend_flask](https://gitlab.com/icog-labs/mozi_backend_flask), [mozi_frontend](https://gitlab.com/icog-labs/mozi), [ghost](https://gitlab.com/xabush/ghost) and [bio-data](https://gitlab.com/opencog-bio/bio-data) repositories
+NOTE: You must be on the **develop** branch for Mozi Backend and Mozi Frontend repos/
 
 2. Define the following environment variables:
 
