@@ -14,16 +14,7 @@ NOTE: You must be on the **develop** branch for Mozi Backend and Mozi Frontend r
 
     e. `DATASETS_DIR` -- Points to the location where datasets will be stored
 
-3. Goto mozi front-end directory and open `src/app/app.config.ts` and replace with the following code
- ``` javascript 
- export const configs = {
-    'url' : 'http://localhost:5000/api/v1.1/',
-    'socket_url': 'http://localhost:5000',
-    'opencog_url_timeout': '10000',
-    'sample_data_file': 'atoms.oovc_ensemble_sti.json'
-};
-``` 
-4. Goto mozi_docker directory and run the following commands:
+3. Goto mozi_docker directory and run the following commands:
 
     3a. `docker-compose build mozi` which will build mozi
 
