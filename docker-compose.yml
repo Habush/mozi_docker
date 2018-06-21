@@ -22,7 +22,7 @@ services:
       - DATASETS_DIR=/root/mozi_datasets
       - REDIS_URI=redis://redis:6379/0
       - C_FORCE_ROOT=1
-    command: bash -c "pip install -r requirements.txt && gunicorn --worker-class eventlet -b 0.0.0.0:5000 wsgi:app"  
+    command: bash -c "pip install -r requirements.txt && gunicorn --worker-class eventlet -b 0.0.0.0:5000 -t 300  wsgi:app"  
 
   
   frontend:

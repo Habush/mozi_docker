@@ -4,7 +4,7 @@
 (add-to-load-path "/usr/local/share/opencog/scm/opencog")
 (add-to-load-path ".")
 (use-modules (opencog query))
-(use-modules (opencog exec))
+(use-modules (opencog exec) (opencog bioscience))
 (use-modules (opencog)
              (opencog nlp)
              (opencog nlp relex2logic)
@@ -17,6 +17,7 @@
 (use-modules (srfi srfi-1))
 (use-modules (ice-9 regex))
 (use-modules (rnrs base) (rnrs exceptions))
+(set-relex-server-host)
 (use-modules (json))
 
 (primitive-load "/root/ghost/pm_functions.scm")

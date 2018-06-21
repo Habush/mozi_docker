@@ -90,7 +90,7 @@ WORKDIR guile-json
 RUN \
     apt-get install -y dh-autoreconf && \
     autoreconf -vif && \
-    ./configure --prefix=/usr    && \
+    ./configure  && \
     make && \
     make install 
 
