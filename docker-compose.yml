@@ -1,7 +1,7 @@
 version: '3'
 services:
   mozi:
-    build: backend/
+    build: mozi_backend
     ports:
       - "5000:5000"
     links:
@@ -26,7 +26,7 @@ services:
 
   
   frontend:
-    build: frontend/
+    build: mozi_frontend
     volumes:
        - $MOZI_FRONTEND:/root/mozi
     ports:
