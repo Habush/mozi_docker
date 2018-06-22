@@ -17,6 +17,9 @@ RUN mkdir /root/ghost
 
 RUN apt-get update
 
+#Install Moses
+RUN /tmp/octool -m ; ccache -C
+
 #Install and make python3 default
 RUN apt-get install -y python3 python3-dev python3-pip
 
