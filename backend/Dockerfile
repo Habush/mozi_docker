@@ -99,14 +99,18 @@ RUN \
 
 WORKDIR $HOME
 
+# INSTALL NLTK
+RUN pip install nltk
+RUN python -m nltk.downloader all
+
 # INSTALL GROBID
 
-RUN apt-get install -y unzip 
-RUN wget https://github.com/kermitt2/grobid/archive/0.5.1.zip
-RUN unzip 0.5.1.zip
+RUN apt-get install -y unzip maven 
+RUN wget https://github.com/kermitt2/grobid/releases/download/grobid-parent-0.4.1/grobid-grobid-parent-0.4.1.zip
+RUN unzip grobid-grobid-parent-0.4.1.zip
 
-WORKDIR grobid-0.5.1
-RUN ./gradlew clean install
+WORKDIR grobid-grobid-parent-0.4.1.zip
+RUN mvn clean install
 
 COPY .guile $HOME
 
