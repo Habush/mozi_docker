@@ -17,6 +17,9 @@ RUN mkdir /root/ghost
 
 RUN apt-get update
 
+#Install Moses
+RUN /tmp/octool -m ; ccache -C
+
 #Install and make python3 default
 RUN apt-get install -y python3 python3-dev python3-pip
 
@@ -53,8 +56,8 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/
 ##tmp install opencog tools
 #ADD https://raw.githubusercontent.com/Habush/mozi_docker/master/ocpkg /tmp/octool
 #
-#RUN chmod 755 /tmp/octool;  sed -i 's/sudo//g' /tmp/octool; sync; /tmp/octool -rdops
-#
+#RUN chmod 755 /tmp/octool;  sed -i 's/sudo//g' /tmp/octool; sync; /tmp/octool -m
+
 
 #Install cogutils dependencies
 #Required dependencies
@@ -98,12 +101,15 @@ WORKDIR $HOME
 
 # INSTALL GROBID
 
-RUN apt-get install -y unzip 
-RUN wget https://github.com/kermitt2/grobid/archive/0.5.1.zip
-RUN unzip 0.5.1.zip
+RUN apt-get install -y unzip maven 
+RUN wget https://github.com/kermitt2/grobid/releases/download/grobid-parent-0.4.1/grobid-grobid-parent-0.4.1.zip
+RUN unzip grobid-grobid-parent-0.4.1.zip
+WORKDIR grobid-grobid-parent-0.4.1
+RUN mvn clean install
 
-WORKDIR grobid-0.5.1
-RUN ./gradlew clean install
+# INSTALL NLTK
+RUN pip install nltk
+RUN python -m nltk.downloader all
 
 COPY .guile $HOME
 
