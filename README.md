@@ -16,11 +16,9 @@ NOTE: You must be on the **develop** branch for Mozi Backend and Mozi Frontend r
 
 3. Goto mozi_docker directory and run the following commands:
 
-    3a. `docker-compose build mozi` which will build mozi
+    3a. `docker-compose up mozi` which will run mozi
 
-    3b. `docker-compose up mozi` which will run mozi
-
-    3c. `docker exec -it mozi_docker_mozi_1 /bin/bash` which will give 
+    3b. `docker exec -it mozi_docker_mozi_1 /bin/bash` which will give 
     you interactive shell access to the running docker image
 
-    3d. Once inside run this shell run `celery -A utils.task_runner.celery worker --loglevel=INFO` to start **celery**. 
+    3c. Once inside run this shell run `celery -A utils.task_runner.celery worker --loglevel=INFO` to start **celery**. 
