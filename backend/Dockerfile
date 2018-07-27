@@ -103,8 +103,10 @@ WORKDIR $HOME
 
 RUN apt-get install -y unzip maven 
 RUN wget https://github.com/kermitt2/grobid/releases/download/grobid-parent-0.4.1/grobid-grobid-parent-0.4.1.zip
-RUN unzip grobid-grobid-parent-0.4.1.zip
-WORKDIR grobid-grobid-parent-0.4.1
+RUN unzip grobid-grobid-parent-0.4.1.zip 
+RUN mv grobid-grobid-parent-0.4.1 grobid-parent-0.4.1 
+
+WORKDIR grobid-parent-0.4.1
 RUN mvn clean install
 
 # INSTALL NLTK
@@ -119,6 +121,14 @@ WORKDIR $HOME/mozi
 
 RUN pip install git+https://github.com/rantav/flask-restful-swagger.git#egg=flask-restful-swagger
 
+# SETUP Postgress
+WORKDIR $HOME
+#RUN apt-get install -y postgresql postgresql-contrib && \
+#    service postgresql start && \
+#    sudo su - postgres && \
+#    createdb mozi_cogdata && \
+#    psql -c "CREATE USER mozi_user WITH PASSWORD 'cheese'" -d mozi_cogdata 
+#
 EXPOSE 5000
 
 #ENTRYPOINT exec gunicorn --worker-class eventlet -b 0.0.0.0:5000 wsgi:app 
