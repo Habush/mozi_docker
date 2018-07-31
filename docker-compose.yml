@@ -9,7 +9,7 @@ services:
       - mongo
       - redis
       - frontend
-      - postgres
+#      - postgres
     volumes:
       - $MOZI_BACKEND:/root/mozi/
       - $GHOST_DIR:/root/ghost/
@@ -23,9 +23,9 @@ services:
       - DATASETS_DIR=/root/mozi_datasets
       - REDIS_URI=redis://redis:6379/0
       - C_FORCE_ROOT=1
-    command: bash -c "pip install -r requirements.txt && gunicorn --worker-class eventlet -b 127.0.0.1:5000 -t 300  wsgi:app"  
-    security_opt:
-      - seccomp=unconfined 
+    command: bash -c "pip install -r requirements.txt && gunicorn --worker-class eventlet -b 0.0.0.0:5000 -t 300  wsgi:app"  
+    #security_opt:
+    #  - seccomp=unconfined 
   
   frontend:
     image: xabush/mozi_frontend
@@ -34,7 +34,7 @@ services:
     ports:
        - "4200:4200"
     working_dir: /root/mozi
-    command: bash -c "npm install && ng build && nodemon server.js"
+    command: bash -c "npm install && nodemon server.js"
   
   relex:
     image: opencog/relex
@@ -53,7 +53,7 @@ services:
     image: redis
     ports:
      - "6379:6379"
-  postgres:
-    build: postgres/
-    ports:
-      - "5432:5432"
+ # postgres:
+ #   build: postgres/
+ #   ports:
+ #     - "5432:5432"
