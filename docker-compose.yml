@@ -52,6 +52,6 @@ services:
     ports:
      - "6379:6379"
   postgres:
-    image: opencog/postgres
+    image: enkuwende/postgres
     ports:
       - "5432:5432"
