@@ -9,7 +9,7 @@ services:
       - mongo
       - redis
       - frontend
-#      - postgres
+      - postgres
     volumes:
       - $MOZI_BACKEND:/root/mozi/
       - $GHOST_DIR:/root/ghost/
@@ -24,9 +24,7 @@ services:
       - REDIS_URI=redis://redis:6379/0
       - C_FORCE_ROOT=1
     command: bash -c "pip install -r requirements.txt && gunicorn --worker-class eventlet -b 0.0.0.0:5000 -t 300  wsgi:app"  
-    #security_opt:
-    #  - seccomp=unconfined 
-  
+   
   frontend:
     image: xabush/mozi_frontend
     volumes:
@@ -53,7 +51,7 @@ services:
     image: redis
     ports:
      - "6379:6379"
- # postgres:
- #   build: postgres/
- #   ports:
- #     - "5432:5432"
+  postgres:
+    image: opencog/postgres
+    ports:
+      - "5432:5432"
