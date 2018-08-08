@@ -129,6 +129,8 @@ WORKDIR $HOME
 #    createdb mozi_cogdata && \
 #    psql -c "CREATE USER mozi_user WITH PASSWORD 'cheese'" -d mozi_cogdata 
 #
+ADD wait-for-it.sh /wait-for-it.sh
+
 EXPOSE 5000
 
 #ENTRYPOINT exec gunicorn --worker-class eventlet -b 0.0.0.0:5000 wsgi:app 
