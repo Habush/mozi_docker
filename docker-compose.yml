@@ -32,7 +32,7 @@ services:
     ports:
        - "4200:4200"
     working_dir: /root/mozi
-    command: bash -c "npm install && nodemon server.js"
+    command: bash -c "npm install ng build --prod && nodemon server.js"
   
   relex:
     image: opencog/relex
