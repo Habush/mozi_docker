@@ -1,7 +1,7 @@
 version: '3'
 services:
   mozi:
-    image: xabush/mozi_backend
+    build: backend/
     ports:
       - "5000:5000"
     links:
@@ -9,7 +9,7 @@ services:
       - mongo
       - redis
       - frontend
-#      - postgres
+      - postgres
     volumes:
       - $MOZI_BACKEND:/root/mozi/
       - $GHOST_DIR:/root/ghost/
@@ -28,7 +28,7 @@ services:
     #  - seccomp=unconfined 
   
   frontend:
-    image: xabush/mozi_frontend
+    build: frontend/
     volumes:
        - $MOZI_FRONTEND:/root/mozi
     ports:
