@@ -1,5 +1,5 @@
 FROM opencog/opencog-dev:cli 
-MAINTAINER Xabush Semrie <hsamireh@gmail.com>
+MAINTAINER Enku Wendwosen <enku.wende@gmail.com>
 
 #Run apt-get in NONINTERACTIVE mode
 ENV DEBIAN_FRONTEND noninteractive
@@ -124,15 +124,6 @@ RUN pip install git+https://github.com/rantav/flask-restful-swagger.git#egg=flas
 
 # SETUP Postgress
 WORKDIR $HOME
-#RUN apt-get install -y postgresql postgresql-contrib && \
-#    service postgresql start && \
-#    sudo su - postgres && \
-#    createdb mozi_cogdata && \
-#    psql -c "CREATE USER mozi_user WITH PASSWORD 'cheese'" -d mozi_cogdata 
-#
-ADD wait-for-it.sh /wait-for-it.sh
-RUN chmod 755 /wait-for-it.sh
-
 EXPOSE 5000
 
-#ENTRYPOINT exec gunicorn --worker-class eventlet -b 0.0.0.0:5000 wsgi:app 
+#ENTRYPOINT /bin/bash 
