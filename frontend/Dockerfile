@@ -20,6 +20,5 @@ WORKDIR ${HOME}/mozi
 
 #RUN npm install
 
-EXPOSE 4200
 
 #ENTRYPOINT  npm install && ng serve
