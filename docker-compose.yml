@@ -36,8 +36,6 @@ services:
   
   relex:
     image: opencog/relex
-    ports:
-      - "4444:4444"
     command: /bin/sh -c "./opencog-server.sh"
   
   mongo:
@@ -45,13 +43,7 @@ services:
     
    # volumes:
    #  - $MONGODB_DIR:/data/db
-    ports:
-     - "27017:27017"
   redis:
     image: redis
-    ports:
-     - "6379:6379"
   postgres:
     image: enkuwende/postgres
-    ports:
-      - "5432:5432"
