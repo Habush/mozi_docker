@@ -32,7 +32,7 @@ services:
     ports:
        - "4200:4200"
     working_dir: /root/mozi
-    command: bash -c "npm install && nodejs node_modules/node-sass/scripts/install.js && npm rebuild node-sass && ng build --prod && nodemon server.js"
+    command: bash -c "yarn install && ng build --prod && pm2 server.js"
   
   relex:
     image: opencog/relex
