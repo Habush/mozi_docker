@@ -121,6 +121,10 @@ WORKDIR $HOME/mozi
 
 RUN pip install git+https://github.com/rantav/flask-restful-swagger.git#egg=flask-restful-swagger
 
+#INSTALL OGER
+
+RUN pip install git+https://github.com/OntoGene/OGER.git
+
 # SETUP Postgress
 WORKDIR $HOME
 #RUN apt-get install -y postgresql postgresql-contrib && \
